@@ -3,21 +3,20 @@ package com.example.vehicle
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.widget.ImageView
 
-/** CABRIO KLASSE: ERBT VON DER CAR KLASSE **/
 class Limousine(speed: Int, tankVolume: Int, doorCount: Int) : Car(speed, tankVolume, doorCount) {
+    var partyMode = false
+    override var carImage: Int = R.drawable.limousine_animation
 
-    private var disco = false
-    override var carImage = R.drawable.limousine_animation
-
-    /** Disco Animation **/
+    /** LIMO ACTION: Party Mode **/
     override fun action(iv: ImageView) {
-        // TODO
+        partyMode = true
+        animation(iv)
+    }
 
-        /** Disco **/
-        fun animation(iv: ImageView) {
-            iv.setImageResource(carImage)
-            var animatedLimousine: AnimatedVectorDrawable = iv.drawable as AnimatedVectorDrawable
-            animatedLimousine.start()
-        }
+    fun animation(iv: ImageView) {
+        iv.setImageResource(carImage)
+        var partyAnimation: AnimatedVectorDrawable = iv.drawable as AnimatedVectorDrawable
+        partyAnimation.start()
+        partyMode = false
     }
 }

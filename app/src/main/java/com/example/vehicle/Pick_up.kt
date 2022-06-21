@@ -1,23 +1,29 @@
 package com.example.vehicle
 
-import android.graphics.drawable.AnimatedVectorDrawable
 import android.widget.ImageView
 
-/** CABRIO KLASSE: ERBT VON DER CAR KLASSE **/
-class Pick_up(speed: Int, tankVolume: Int, doorCount: Int) : Car(speed, tankVolume, doorCount) {
+class Pick_up(
+    speed: Int,
+    tankVolume: Int,
+    doorCount: Int,
+    wheelSize: Int = 4,
+    hasHardTop: Boolean = false
+) : Car(speed, tankVolume, doorCount) {
+    val isCool = true
+    override var carImage: Int = R.drawable.pick_up
 
-    private var disco = false
-    override var carImage = R.drawable.pick_up
-
-    /** Disco Animation **/
     override fun action(iv: ImageView) {
-        // TODO
+        jump(iv)
+    }
 
-        /** Disco **/
-        fun animation(iv: ImageView) {
-            iv.setImageResource(carImage)
-            var animatedLimousine: AnimatedVectorDrawable = iv.drawable as AnimatedVectorDrawable
-            animatedLimousine.start()
+    private fun jump(iv: ImageView) {
+        for (i in 1..50) {
+            iv.y -= 2
+            Thread.sleep(20)
+        }
+        for (i in 1..50) {
+            iv.y += 2
+            Thread.sleep(20)
         }
     }
 }

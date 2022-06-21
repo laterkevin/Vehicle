@@ -11,12 +11,12 @@ class Cabrio(speed: Int, tankVolume: Int, doorCount: Int) : Car(speed, tankVolum
 
     /** CABRIO ACTION: DACH ÖFFNEN UND SCHLIEßEN **/
     override fun action(iv: ImageView) {
-        // TODO
-        if (sunRoofOpened) {
-            carImage = R.drawable.cabrio_animation_close
-            sunRoofOpened = false
-        } else carImage = R.drawable.cabrio_animation_open
-        sunRoofOpened = true
+        carImage = when (sunRoofOpened) {
+            true -> R.drawable.cabrio_animation_close
+            false -> R.drawable.cabrio_animation_open
+        }
+        animation(iv)
+        sunRoofOpened = !sunRoofOpened
     }
 
     /** ANIMATION DES DACHES **/
